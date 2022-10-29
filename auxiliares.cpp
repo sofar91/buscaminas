@@ -62,7 +62,6 @@ int cantidad_minas(tablero t){
     return suma;
 }
 
-
                                           // ***Auxiliares Ejercicio (2)***
 
 bool es_banderita(pos p, banderitas b){
@@ -93,7 +92,7 @@ int minas_pisadas(jugadas j, tablero t){
             suma_minas++;
         }
     }
-    return suma;
+    return suma_minas;
 }
 
 bool hay_mina_en_posicion(pos p, tablero t){
@@ -121,7 +120,6 @@ bool fue_jugada(pos p, jugadas j){
     return jugada;
 }
 
-
                                                // ***Auxiliaries Ejercicio (3)***
 
 bool juego_perdido(tablero t, jugadas js){
@@ -129,17 +127,66 @@ bool juego_perdido(tablero t, jugadas js){
         return hay_mina_en_posicion(js[i].first,t);
     }
 }
-
                                                // ***Auxiliares Ejercicio (4)***
 
 bool juego_ganado(tablero t, jugadas js){
-    for(int i = 0; i < js.size(); ++i) {
-        if(hay_mina_en_posicion(js[i].first,t))
-           return false;
+    bool gano = true;
+    for (int i = 0; i < js.size(); ++i) {
+        if(hay_mina_en_posicion(js[i].first,t)){
+            return gano = false;
         }
-    return true;
+    }
+}
+                                             // ***Auxiliares Ejercicio (5)***
+
+void descubre_multiples_posiciones(pos pos_jugada, jugadas j, banderitas b, tablero t) {
+    if (hay_camino_libre(pos_jugada, j, b, t)) {
+        for (int i = 0; i < j.size(); ++i) {
+            if (son_posiciones_adyacentes(pos_jugada, j[i].first) && !fue_jugada(pos_jugada, j)) {
+                descubre_solo_posicion_jugada(pos_jugada, j);
+                solo_agrega_posiciones_descubiertas(j[i].first, j);
+            }
+        }
+        if (!fue_jugada(pos_jugada, j) && numero_minas_adyacentes(t, pos_jugada) >= 1) {
+            descubre_solo_posicion_jugada(pos_jugada, j);
+        }
+    }
+}
+
+bool hay_camino_libre(pos p, jugadas j, banderitas b, tablero t){
+    return (!hay_mina_en_posicion(p,t)&& numero_minas_adyacentes(t,p)==0);
+}
+
+bool son_posiciones_adyacentes(pos p, pos q){
+    float mod1 = p.first - q.first;
+    float mod2 = p.second - q.second;
+    return sqrt(mod1)<=1 && sqrt(mod2)<=1 && (p!=q);
+}
+
+void solo_agrega_posiciones_descubiertas(pos p, jugadas j){
+    pos pos_original (p.first,p.second);
+    int mina = 0;
+    jugada pos_final (pos_original, mina);
+    j.push_back(pos_final);
+}
+
+void descubre_solo_posicion_jugada(pos p, jugadas j){
+    pos pos_original (p.first,p.second);
+    int mina = 0;
+    jugada pos_final (pos_original, mina);
+    j.push_back(pos_final);
 }
 
 
 
 
+/*int cant_descubiertas_auto_desde(pos p, jugadas j, jugadas j0, banderitas b, tablero t){
+}
+bool mantiene_jugadas(jugadas js0, jugadas js){
+
+}
+bool incluye_jugada_actual(tablero t, jugadas j, pos p){
+}
+bool es_camino_libre(pos p, jugadas j, banderitas b, tablero t){
+}
+*/

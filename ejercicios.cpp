@@ -32,21 +32,20 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 // **EJERCICIO perdio**
 
 bool perdio(tablero& t, jugadas& j) {
-    juego_perdido(t,j);
+    return juego_perdido(t,j);
 }
 
 // ** EJERCICIO gano **
 bool gano(tablero& t, jugadas& j) {
-    juego_ganado(t,j);
+    return juego_ganado(t,j);
 }
 
 // ** EJERCICIO jugarPlus **
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    // ...
+    descubre_multiples_posiciones(p,j,b,t);
 }
 
 
 // ** EJERCICIO sugerirAutomatico121 **
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-    // ...
 }
