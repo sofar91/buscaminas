@@ -2,9 +2,7 @@
 // Este archivo contiene las definiciones de las funciones que implementan los ejercicios
 //
 
-#include <stdio.h>
 #include <iostream>
-
 
 #include "definiciones.h"
 #include "ejercicios.h"
@@ -12,14 +10,14 @@
 
 using namespace std;
 
-// ** EJERCICIO minasAdyacentes **
+        // ** EJERCICIO minasAdyacentes **
 
 int minasAdyacentes(tablero& t, pos p) {
     return numero_minas_adyacentes(t,p);
 }
 
 
-// ** EJERCICIO plantarBanderita **
+        // ** EJERCICIO plantarBanderita **
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     if(es_banderita(p,b)){
@@ -29,23 +27,30 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     }
 }
 
-// **EJERCICIO perdio**
+       // **EJERCICIO perdio**
 
 bool perdio(tablero& t, jugadas& j) {
     return juego_perdido(t,j);
 }
 
-// ** EJERCICIO gano **
+
+       // ** EJERCICIO gano **
+
 bool gano(tablero& t, jugadas& j) {
     return juego_ganado(t,j);
 }
 
-// ** EJERCICIO jugarPlus **
+
+       // ** EJERCICIO jugarPlus **
+
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
     descubre_multiples_posiciones(p,j,b,t);
 }
 
 
-// ** EJERCICIO sugerirAutomatico121 **
+
+      // ** EJERCICIO sugerirAutomatico121 **
+
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
+    return hay_posicion_sugerible(p,j,b,t);
 }

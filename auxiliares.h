@@ -52,3 +52,13 @@ bool hay_camino_libre(pos p0, jugadas j0, banderitas b, tablero t);
 void descubre_solo_posicion_jugada(pos p, jugadas j);
 void descubre_multiples_posiciones(pos pos_jugada, jugadas j, banderitas b, tablero t);
 void solo_agrega_posiciones_descubiertas(pos p, jugadas j);
+
+
+// **(6)**
+
+bool es_121_vertical(pos p, jugadas j);
+bool es_adyacente_a121(pos p, jugadas j);
+bool es_121_horizontal(pos p, jugadas j);
+bool jugada_hecha(jugada a_hacer, jugadas j);
+bool hay_posicion_sugerible(pos p, jugadas j, banderitas b, tablero t);
+bool posicion_sin_banderita_sin_jugar(pos p, jugadas j, banderitas b, tablero t);

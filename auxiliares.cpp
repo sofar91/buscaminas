@@ -178,6 +178,65 @@ void descubre_solo_posicion_jugada(pos p, jugadas j){
 }
 
 
+                                    // ***Auxiliares Ejercicio (6)***
+bool hay_posicion_sugerible(pos p,jugadas j, banderitas b, tablero t){
+    return posicion_sin_banderita_sin_jugar(p,j,b,t) && es_adyacente_a121(p,j);
+}
+
+
+bool es_adyacente_a121(pos p, jugadas j){
+    return es_121_vertical(p,j) || es_121_horizontal(p,j);
+}
+
+bool es_121_vertical(pos p, jugadas j){
+    pos vertical1(p.first-1,p.second);
+    pos vertical2(p.first +1, p.second);
+    jugada jugada1(vertical1,1);
+    jugada jugada2(vertical2, 1);
+    jugada original(p,2);
+    bool verifica_jugada1 = jugada_hecha(jugada1,j);
+    bool verifica_jugada2 = jugada_hecha(jugada2,j);
+    bool verifica_original = jugada_hecha(original, j);
+    return verifica_jugada1 && verifica_jugada2 && verifica_original;
+}
+
+
+bool es_121_horizontal(pos p, jugadas j){
+    pos horizontal1 (p.first, p.second-1);
+    pos horizontal2(p.first,p.second+1);
+    jugada juego1(horizontal1,1);
+    jugada juego2(horizontal2,1);
+    jugada original(p,2);
+    bool verifica_juego1 = jugada_hecha(juego1,j);
+    bool verifica_juego2 = jugada_hecha(juego2,j);
+    bool verifica_original = jugada_hecha(original, j);
+    return verifica_juego1 && verifica_juego2 && verifica_original;
+}
+
+
+bool jugada_hecha(jugada a_hacer, jugadas j){
+    for (int i = 0; i < j.size(); ++i) {
+        if (a_hacer == j[i]){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool posicion_sin_banderita_sin_jugar(pos p, jugadas j, banderitas b, tablero t){
+    bool sin_bandera = es_banderita(p,b);
+    bool sin_jugar = fue_jugada(p,j);
+    return sin_bandera && sin_jugar;
+}
+
+
+
+
+
+
+
+
+
 
 
 /*int cant_descubiertas_auto_desde(pos p, jugadas j, jugadas j0, banderitas b, tablero t){
