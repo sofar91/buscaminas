@@ -25,19 +25,17 @@ int minas_pisadas(jugadas j, tablero t);
 
 bool fue_jugada(pos p, jugadas j);
 bool jugadas_no_repetidas(jugadas j);
-bool es_banderita(pos p, banderitas b);
+
 bool hay_mina_en_posicion(pos p, tablero t);
 
-void saca_banderita(pos ps, banderitas& bs);
-void planta_banderita(pos ps_plantar, banderitas& bs);
 
 // **(3)**
 
-bool juego_perdido(tablero t, jugadas js);
+
 
 // **(4)**
 
-bool juego_ganado(tablero t, jugadas js);
+
 
 // **(5)**
 
@@ -59,6 +57,6 @@ void solo_agrega_posiciones_descubiertas(pos p, jugadas j);
 bool es_121_vertical(pos p, jugadas j);
 bool es_adyacente_a121(pos p, jugadas j);
 bool es_121_horizontal(pos p, jugadas j);
+bool es_banderita(pos p, banderitas b);
 bool jugada_hecha(jugada a_hacer, jugadas j);
-bool hay_posicion_sugerible(pos p, jugadas j, banderitas b, tablero t);
 bool posicion_sin_banderita_sin_jugar(pos p, jugadas j, banderitas b, tablero t);
